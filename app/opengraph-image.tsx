@@ -9,6 +9,13 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
+  // Fetch the profile image
+  const imageUrl = new URL('/profile_img.png',
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:3000'
+  );
+
   return new ImageResponse(
     (
       <div
@@ -36,20 +43,15 @@ export default async function Image() {
             display: 'flex',
           }}
         >
-          {/* Profile image will be added after deployment */}
-          <div
+          <img
+            src={imageUrl.toString()}
+            alt="규연 실장"
+            width={240}
+            height={240}
             style={{
-              width: 240,
-              height: 240,
-              background: 'linear-gradient(135deg, #ffd5c7, #ffe9d6)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 100,
+              objectFit: 'cover',
             }}
-          >
-            💄
-          </div>
+          />
         </div>
 
         {/* Main Title */}
