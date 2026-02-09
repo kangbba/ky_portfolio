@@ -41,7 +41,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black">
+    <main className="min-h-screen bg-cream">
       {/* Animated Background Gradient */}
       <motion.div
         className="fixed inset-0 pointer-events-none opacity-20 z-0"
@@ -99,7 +99,7 @@ export default function Home() {
                     ease: "linear",
                   }}
                 >
-                  <div className="relative w-full h-full bg-white dark:bg-black rounded-full overflow-hidden">
+                  <div className="relative w-full h-full bg-cream rounded-full overflow-hidden">
                     <Image
                       src="/profile_img.png"
                       alt="규연 실장"
@@ -152,18 +152,15 @@ export default function Home() {
                 href="#services"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-black dark:bg-white text-white dark:text-black overflow-hidden"
+                className="group relative px-8 py-4 bg-gradient-to-r from-butter-dark to-lemon text-foreground overflow-hidden shadow-lg"
               >
-                <span className="relative z-10 tracking-wider">서비스 보기</span>
                 <motion.div
-                  className="absolute inset-0 gradient-gold"
+                  className="absolute inset-0 bg-gradient-to-r from-lemon to-accent"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10 tracking-wider group-hover:text-white">
-                  서비스 보기
-                </span>
+                <span className="relative z-10 tracking-wider font-semibold">서비스 보기</span>
               </motion.a>
 
               <motion.a
@@ -172,7 +169,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors tracking-wider"
+                className="px-8 py-4 border-2 border-butter-dark hover:bg-butter hover:border-accent transition-all tracking-wider shadow-md"
               >
                 💬 상담 문의하기
               </motion.a>
@@ -187,9 +184,9 @@ export default function Home() {
           transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: "reverse" }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
-          <div className="w-6 h-10 border-2 border-black dark:border-white rounded-full flex justify-center">
+          <div className="w-6 h-10 border-2 border-accent rounded-full flex justify-center">
             <motion.div
-              className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full mt-2"
+              className="w-1.5 h-1.5 bg-accent rounded-full mt-2"
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
@@ -198,13 +195,13 @@ export default function Home() {
 
         {/* Decorative Elements */}
         <motion.div
-          className="absolute top-1/4 left-10 w-1 h-32 gradient-gold opacity-30"
+          className="absolute top-1/4 left-10 w-1 h-32 bg-gradient-to-b from-lemon to-accent opacity-40"
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ delay: 1, duration: 1 }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-10 w-1 h-32 gradient-gold opacity-30"
+          className="absolute bottom-1/4 right-10 w-1 h-32 bg-gradient-to-b from-accent to-butter-dark opacity-40"
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
@@ -231,7 +228,7 @@ export default function Home() {
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
               >
-                <div className="relative w-full h-full bg-white dark:bg-black rounded-lg overflow-hidden">
+                <div className="relative w-full h-full bg-cream rounded-lg overflow-hidden">
                   <Image
                     src="/profile_img.png"
                     alt="규연 실장 프로필"
@@ -270,7 +267,7 @@ export default function Home() {
               viewport={{ once: true }}
             />
             <motion.div
-              className="absolute -top-6 -left-6 w-32 h-32 border-2 border-black dark:border-white rounded-lg -z-10"
+              className="absolute -top-6 -left-6 w-32 h-32 border-2 border-butter-dark rounded-lg -z-10"
               initial={{ opacity: 0, scale: 0, rotate: -45 }}
               whileInView={{ opacity: 0.3, scale: 1, rotate: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -337,7 +334,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="min-h-screen flex items-center justify-center px-4 py-20">
+      <section id="services" className="min-h-screen flex items-center justify-center px-4 py-20 bg-butter">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -409,7 +406,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.08 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white dark:bg-gray-900 p-6 border border-gray-200 dark:border-gray-800 relative overflow-hidden group"
+                className="bg-cream p-6 border border-butter-dark hover:border-accent relative overflow-hidden group shadow-md hover:shadow-xl transition-all"
               >
                 <motion.div
                   className="absolute top-0 left-0 w-full h-1 gradient-gold"
@@ -431,7 +428,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center justify-center px-4 py-20 bg-black text-white">
+      <section id="contact" className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-lemon to-butter-light">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -481,11 +478,11 @@ export default function Home() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-12 py-5 gradient-gold text-white text-lg font-semibold tracking-wider relative overflow-hidden group"
+              className="inline-block px-12 py-5 bg-accent text-foreground text-lg font-semibold tracking-wider relative overflow-hidden group shadow-xl"
             >
               <motion.div
-                className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20"
-                whileHover={{ opacity: 0.2 }}
+                className="absolute inset-0 bg-gradient-to-r from-lemon to-butter-light opacity-0 group-hover:opacity-100"
+                whileHover={{ opacity: 1 }}
               />
               <span className="relative z-10">💬 카카오톡 상담하기</span>
             </motion.a>
@@ -494,7 +491,7 @@ export default function Home() {
               href="tel:02-2138-0605"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-12 py-5 border-2 border-white text-white text-lg font-semibold tracking-wider hover:bg-white hover:text-black transition-colors"
+              className="inline-block px-12 py-5 border-2 border-accent text-foreground text-lg font-semibold tracking-wider hover:bg-cream transition-all shadow-lg"
             >
               📞 전화 예약하기
             </motion.a>
@@ -502,7 +499,7 @@ export default function Home() {
 
           {/* Additional Info */}
           <motion.div
-            className="text-gray-400 space-y-3 mb-8"
+            className="text-gray-600 space-y-3 mb-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -513,8 +510,8 @@ export default function Home() {
             </p>
             <p className="text-base">📍 서울 강남구 청담동 63-14</p>
             <p className="text-base">📞 02-2138-0605</p>
-            <p className="text-sm text-gray-500">(전화 예약 시 "규연 실장" 이름으로 예약 가능)</p>
-            <p className="text-sm text-gray-500">영업시간: 오전 10:00 ~ 오후 7:00</p>
+            <p className="text-sm text-gray-600">(전화 예약 시 "규연 실장" 이름으로 예약 가능)</p>
+            <p className="text-sm text-gray-600">영업시간: 오전 10:00 ~ 오후 7:00</p>
           </motion.div>
 
           {/* Social Links */}
@@ -543,17 +540,17 @@ export default function Home() {
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </motion.a>
-            <span className="text-gray-500">@hyxxzz.ky</span>
+            <span className="text-gray-600 font-medium">@hyxxzz.ky</span>
           </motion.div>
 
           <motion.div
-            className="mt-16 pt-12 border-t border-gray-800"
+            className="mt-16 pt-12 border-t border-butter-dark"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.9 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-500">
               © 2024 GYUYEON. All rights reserved.
             </p>
           </motion.div>
