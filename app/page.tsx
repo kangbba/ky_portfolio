@@ -137,17 +137,17 @@ export default function Home() {
               <div className="md:col-span-3 space-y-4 md:space-y-8">
                 <h2 className="text-3xl md:text-5xl font-bold text-gray-800">소개</h2>
 
-                <div className="space-y-3 md:space-y-5 text-sm md:text-lg text-gray-700 leading-relaxed">
+                <div className="space-y-3 md:space-y-5 text-base md:text-xl text-gray-700 leading-relaxed">
                   <p className="flex items-start gap-2 md:gap-3">
-                    <span className="text-lg md:text-2xl">✨</span>
+                    <span className="text-xl md:text-3xl">✨</span>
                     <span>가장 빛나는 순간을 연출합니다</span>
                   </p>
                   <p className="flex items-start gap-2 md:gap-3">
-                    <span className="text-lg md:text-2xl">🫧</span>
+                    <span className="text-xl md:text-3xl">🫧</span>
                     <span>취향과 분위기를 디테일하게 읽어내는 1:1 상담</span>
                   </p>
                   <p className="flex items-start gap-2 md:gap-3">
-                    <span className="text-lg md:text-2xl">🌿</span>
+                    <span className="text-xl md:text-3xl">🌿</span>
                     <span>가장 잘 어울리는 방향으로 완성하는 맞춤 메이크업</span>
                   </p>
                 </div>
@@ -161,7 +161,7 @@ export default function Home() {
                   ].map((stat) => (
                     <div key={stat.label} className="text-center bg-white p-3 md:p-6 rounded-xl md:rounded-2xl shadow-soft overflow-hidden">
                       <div className="text-xl md:text-4xl font-extrabold text-gray-800 whitespace-nowrap">{stat.num}</div>
-                      <div className="text-[0.65rem] md:text-sm text-gray-600 mt-1 md:mt-2 whitespace-nowrap">{stat.label}</div>
+                      <div className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2 whitespace-nowrap">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -192,7 +192,7 @@ export default function Home() {
               { title: "혼주 메이크업", emoji: "🌸" },
               { title: "하객 메이크업", emoji: "👗" },
               { title: "데일리 메이크업", emoji: "🎀" },
-              { title: "프로필 촬영 메이크업", emoji: "🎬" },
+              { title: "프로필 촬영 메이크업", emoji: "🎬", mobileBr: true },
               { title: "돌잔치 메이크업", emoji: "🎂" },
               { title: "면접 메이크업", emoji: "💼" },
               { title: "승무원 메이크업", emoji: "✈️" },
@@ -207,7 +207,13 @@ export default function Home() {
                 className="card-glass p-4 md:p-8 rounded-xl md:rounded-2xl shadow-soft hover:shadow-strong hover:-translate-y-2 transition-all cursor-pointer"
               >
                 <div className="text-3xl md:text-6xl mb-2 md:mb-4">{service.emoji}</div>
-                <h3 className="text-sm md:text-2xl font-bold text-gray-800">{service.title}</h3>
+                <h3 className="text-sm md:text-2xl font-bold text-gray-800">
+                  {service.mobileBr ? (
+                    <>프로필 촬영<br className="sm:hidden" /> 메이크업</>
+                  ) : (
+                    service.title
+                  )}
+                </h3>
               </motion.div>
             ))}
 
@@ -248,7 +254,7 @@ export default function Home() {
           >
             <div className="text-center mb-12">
               <h2 className="text-5xl font-bold text-gray-800 mb-4">연락처</h2>
-              <p className="text-xl text-gray-700">
+              <p className="text-xl text-gray-700 whitespace-nowrap">
                 궁금하신 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
               </p>
             </div>
@@ -278,10 +284,10 @@ export default function Home() {
                   <span>애브뉴준오 · 규연 실장</span>
                 </div>
 
-                <div className="w-full max-w-md space-y-4 text-center px-4">
+                <div className="w-full space-y-4 text-center">
                   <div className="flex flex-row items-center justify-center gap-2 text-sm md:text-base text-gray-700">
                     <span>📍</span>
-                    <span className="break-keep">서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
+                    <span className="whitespace-nowrap">서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
                   </div>
 
                   <a
@@ -289,12 +295,12 @@ export default function Home() {
                     className="flex items-center justify-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors"
                   >
                     <span>📞</span>
-                    <span>02-2138-0605</span>
+                    <span className="whitespace-nowrap">02-2138-0605</span>
                   </a>
 
                   <div className="pt-4 space-y-2 text-sm sm:text-base text-gray-600">
-                    <p>(전화 예약 시 &ldquo;규연 실장&rdquo; 이름으로 예약 가능)</p>
-                    <p>영업시간: 10:00 ~ 18:00</p>
+                    <p className="whitespace-nowrap">(전화 예약 시 &ldquo;규연 실장&rdquo; 이름으로 예약 가능)</p>
+                    <p className="whitespace-nowrap">영업시간: 10:00 ~ 18:00</p>
                   </div>
                 </div>
               </div>
