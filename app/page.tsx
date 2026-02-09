@@ -35,11 +35,17 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            {/* Profile Image - Clean Circle */}
+            {/* Profile Image - Clean Circle with Flip Effect */}
             <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ scale: 0.8, rotateY: 180, opacity: 0 }}
+              animate={{ scale: 1, rotateY: 0, opacity: 1 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.2,
+                type: "spring",
+                stiffness: 100
+              }}
+              style={{ perspective: 1000 }}
               className="mb-12 flex justify-center"
             >
               <div className="w-56 h-56 rounded-full overflow-hidden shadow-strong border-8 border-white">
@@ -65,14 +71,7 @@ export default function Home() {
                 규연 실장
               </h1>
               <div className="flex items-center justify-center gap-4 text-2xl md:text-3xl text-gray-700 font-medium">
-                <Image
-                  src="/avenue_juno_logo.png"
-                  alt="애브뉴준오"
-                  width={200}
-                  height={60}
-                  className="h-8 md:h-10 w-auto"
-                />
-                <span>· 청담 메이크업 아티스트</span>
+                <span>애브뉴준오 · 청담 메이크업 아티스트</span>
               </div>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-8">
                 당신의 가장 아름다운 순간을<br className="sm:hidden" /> 함께 만들어갑니다 💖
@@ -109,9 +108,15 @@ export default function Home() {
       <section id="about" className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40, rotateY: 15 }}
+            whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
             viewport={{ once: true }}
+            transition={{
+              duration: 0.8,
+              type: "spring",
+              stiffness: 80
+            }}
+            style={{ perspective: 2000 }}
             className="card-glass p-12 md:p-16 rounded-3xl shadow-strong"
           >
             <div className="grid md:grid-cols-5 gap-12 items-center">
@@ -134,16 +139,16 @@ export default function Home() {
 
                 <div className="space-y-5 text-lg text-gray-700 leading-relaxed">
                   <p className="flex items-start gap-3">
-                    <span className="text-2xl">🌟</span>
-                    <span>청담 애브뉴준오에서 신부님들의 가장 아름다운 순간을 함께합니다</span>
-                  </p>
-                  <p className="flex items-start gap-3">
-                    <span className="text-2xl">💕</span>
-                    <span>웨딩 메이크업 전문으로 각 신부님의 개성과 아름다움을 최대한 살립니다</span>
-                  </p>
-                  <p className="flex items-start gap-3">
                     <span className="text-2xl">✨</span>
-                    <span>자연스러우면서도 품격있는 메이크업으로 특별한 날을 완성합니다</span>
+                    <span>가장 빛나는 순간을 연출합니다</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="text-2xl">🫧</span>
+                    <span>취향과 분위기를 디테일하게 읽어내는 1:1 상담</span>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <span className="text-2xl">🌿</span>
+                    <span>가장 잘 어울리는 방향으로 완성하는 맞춤 메이크업</span>
                   </p>
                 </div>
 
@@ -239,69 +244,84 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="card-glass p-12 md:p-16 rounded-3xl shadow-strong text-center"
+            className="card-glass p-12 md:p-16 rounded-3xl shadow-strong"
           >
-            <h2 className="text-5xl font-bold text-gray-800 mb-4">연락처</h2>
-            <p className="text-xl text-gray-700 mb-12">
-              궁금한 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
-            </p>
+            <div className="text-center mb-12">
+              <h2 className="text-5xl font-bold text-gray-800 mb-4">연락처</h2>
+              <p className="text-xl text-gray-700">
+                궁금한 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
+              </p>
+            </div>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+            {/* Kakao Button - Prominent */}
+            <div className="flex justify-center mb-16">
               <a
                 href="https://open.kakao.com/o/sY6ppoqe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-14 py-7 bg-gray-800 text-white text-2xl font-bold shadow-strong hover:shadow-xl hover:-translate-y-1 transition-all"
+                className="hover:opacity-90 hover:-translate-y-1 transition-all"
               >
-                💛 카카오톡 상담
-              </a>
-              <a
-                href="tel:02-2138-0605"
-                className="px-14 py-7 bg-white text-gray-800 text-2xl font-bold shadow-soft hover:shadow-strong hover:-translate-y-1 transition-all border-4 border-gray-800"
-              >
-                📞 전화 예약
+                <Image
+                  src="/logos/kakao_logo.png"
+                  alt="카카오톡으로 시작하기"
+                  width={366}
+                  height={90}
+                  className="w-auto h-auto"
+                />
               </a>
             </div>
 
-            {/* Info */}
-            <div className="space-y-4 text-lg text-gray-700">
-              <div className="flex items-center justify-center gap-3 text-3xl font-bold text-gray-800">
-                <Image
-                  src="/avenue_juno_logo.png"
-                  alt="애브뉴준오"
-                  width={200}
-                  height={60}
-                  className="h-8 md:h-10 w-auto"
-                />
-                <span>· 규연 실장</span>
-              </div>
-              <p>📍 서울 강남구 청담동 63-14</p>
-              <p>📞 02-2138-0605</p>
-              <p className="text-base text-gray-600">
-                (전화 예약 시 "규연 실장" 이름으로 예약 가능)
-              </p>
-              <p className="text-base text-gray-600">
-                영업시간: 오전 10:00 ~ 오후 7:00
-              </p>
+            {/* Company Info Card */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-soft mb-8">
+              <div className="flex flex-col items-center gap-6">
+                <div className="text-3xl font-bold text-gray-800">
+                  <span>애브뉴준오 · 규연 실장</span>
+                </div>
 
-              {/* Instagram */}
-              <div className="pt-8 mt-8 border-t-2 border-gray-200">
-                <a
-                  href="https://www.instagram.com/hyxxzz.ky/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 text-gray-800 hover:text-gray-600 text-2xl font-semibold transition-colors"
-                >
-                  <span className="text-4xl">📷</span>
-                  <span>@hyxxzz.ky</span>
-                </a>
+                <div className="w-full max-w-md space-y-4 text-center">
+                  <div className="flex items-center justify-center gap-3 text-xl text-gray-700">
+                    <span>📍</span>
+                    <span>서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
+                  </div>
+
+                  <a
+                    href="tel:02-2138-0605"
+                    className="flex items-center justify-center gap-3 text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors"
+                  >
+                    <span>📞</span>
+                    <span>02-2138-0605</span>
+                  </a>
+
+                  <div className="pt-4 space-y-2 text-base text-gray-600">
+                    <p>(전화 예약 시 "규연 실장" 이름으로 예약 가능)</p>
+                    <p>영업시간: 10:00 ~ 18:00</p>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            {/* Instagram */}
+            <div className="text-center pt-6">
+              <a
+                href="https://www.instagram.com/hyxxzz.ky/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-4 text-gray-800 hover:text-gray-600 text-2xl font-bold transition-all group"
+              >
+                <Image
+                  src="/logos/instagram_logo.png"
+                  alt="Instagram"
+                  width={44}
+                  height={44}
+                  className="w-11 h-11 group-hover:scale-110 transition-transform"
+                />
+                <span>@hyxxzz.ky</span>
+              </a>
             </div>
 
             {/* Footer */}
-            <div className="mt-16 pt-8 border-t-2 border-gray-200 text-sm text-gray-500">
-              <p>© 2024 GYUYEON. All rights reserved.</p>
+            <div className="mt-16 pt-8 border-t-2 border-gray-200 text-center text-sm text-gray-500">
+              <p>© 2026 Kyu Yeon. All rights reserved.</p>
             </div>
           </motion.div>
         </div>
