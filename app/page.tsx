@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -54,6 +55,22 @@ export default function Home() {
         ref={heroRef}
         className="relative h-screen flex items-center justify-center overflow-hidden"
       >
+        {/* Background Profile Image Effect */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 0.03, scale: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 z-0"
+        >
+          <Image
+            src="/profile_img.png"
+            alt="Background"
+            fill
+            className="object-cover blur-3xl"
+            priority
+          />
+        </motion.div>
+
         <motion.div style={{ opacity, scale }} className="relative z-10">
           <motion.div
             initial="hidden"
@@ -61,6 +78,40 @@ export default function Home() {
             variants={containerVariants}
             className="text-center px-4"
           >
+            {/* Profile Image Circle */}
+            <motion.div
+              variants={itemVariants}
+              className="mb-8 flex justify-center"
+            >
+              <motion.div
+                className="relative w-32 h-32 md:w-40 md:h-40"
+                whileHover={{ scale: 1.05, rotate: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className="absolute inset-0 gradient-gold rounded-full p-[3px]"
+                  animate={{
+                    rotate: 360,
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <div className="relative w-full h-full bg-white dark:bg-black rounded-full overflow-hidden">
+                    <Image
+                      src="/profile_img.png"
+                      alt="규연 실장"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
             {/* Small Title */}
             <motion.div variants={itemVariants} className="mb-6">
               <span className="text-sm tracking-[0.3em] uppercase text-gray-400">
@@ -170,24 +221,59 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="aspect-[3/4] bg-gray-100 dark:bg-gray-900 relative overflow-hidden">
-              {/* Placeholder for profile image */}
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                <span className="text-sm">프로필 이미지</span>
-              </div>
+            {/* Main Image Container with Modern Frame */}
+            <div className="relative aspect-square overflow-hidden">
+              {/* Gradient Border Effect */}
               <motion.div
-                className="absolute inset-0 gradient-gold opacity-20"
-                initial={{ x: "-100%" }}
-                whileInView={{ x: "100%" }}
-                transition={{ duration: 1.5, delay: 0.3 }}
+                className="absolute inset-0 gradient-gold p-[3px] rounded-lg"
+                initial={{ opacity: 0, rotate: -5 }}
+                whileInView={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative w-full h-full bg-white dark:bg-black rounded-lg overflow-hidden">
+                  <Image
+                    src="/profile_img.png"
+                    alt="규연 실장 프로필"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  {/* Subtle Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Animated Light Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                initial={{ x: "-100%", opacity: 0 }}
+                whileInView={{ x: "200%", opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.5 }}
                 viewport={{ once: true }}
               />
             </div>
+
+            {/* Decorative Elements */}
             <motion.div
-              className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-black dark:border-white -z-10"
+              className="absolute -bottom-6 -right-6 w-40 h-40 gradient-gold opacity-20 rounded-lg blur-2xl"
               initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 0.3, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              whileInView={{ opacity: 0.2, scale: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              viewport={{ once: true }}
+            />
+            <motion.div
+              className="absolute -top-6 -left-6 w-32 h-32 border-2 border-black dark:border-white rounded-lg -z-10"
+              initial={{ opacity: 0, scale: 0, rotate: -45 }}
+              whileInView={{ opacity: 0.3, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
               viewport={{ once: true }}
             />
           </motion.div>
