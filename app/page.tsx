@@ -2,10 +2,30 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  // Fixed color values
+  const color1 = "#f7f2d4";
+  const color2 = "#ffe9d6";
+  const color3 = "#ffd5c7";
+  const textColor = "#5c4033";
+  const pos1 = 34;
+  const pos2 = 78;
+  const pos3 = 100;
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--signature', color1);
+    document.documentElement.style.setProperty('--lovely-peach', color2);
+    document.documentElement.style.setProperty('--lovely-pink', color3);
+    document.documentElement.style.setProperty('--text-dark', textColor);
+
+    document.body.style.background = `linear-gradient(135deg, ${color1} ${pos1}%, ${color2} ${pos2}%, ${color3} ${pos3}%)`;
+  }, []);
+
   return (
     <main className="min-h-screen">
+      {/* Color Picker Panel - Hidden */}
       {/* Hero Section - Clean & Bright */}
       <section className="min-h-screen flex items-center justify-center px-4 py-12">
         <div className="max-w-6xl w-full">
@@ -44,11 +64,18 @@ export default function Home() {
               <h1 className="text-6xl md:text-8xl font-extrabold text-gray-800 mb-4">
                 규연 실장
               </h1>
-              <p className="text-2xl md:text-3xl text-gray-700 font-medium">
-                애브뉴준오 · 청담 메이크업 아티스트
-              </p>
+              <div className="flex items-center justify-center gap-4 text-2xl md:text-3xl text-gray-700 font-medium">
+                <Image
+                  src="/avenue_juno_logo.png"
+                  alt="애브뉴준오"
+                  width={200}
+                  height={60}
+                  className="h-8 md:h-10 w-auto"
+                />
+                <span>· 청담 메이크업 아티스트</span>
+              </div>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-8">
-                당신의 가장 아름다운 순간을<br className="sm:hidden" /> 함께 만들어갑니다 ✨
+                당신의 가장 아름다운 순간을<br className="sm:hidden" /> 함께 만들어갑니다 💖
               </p>
             </motion.div>
 
@@ -123,8 +150,8 @@ export default function Home() {
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-6 pt-6">
                   {[
-                    { num: "500+", label: "신부님" },
-                    { num: "7년+", label: "경력" },
+                    { num: "1500+", label: "고객님" },
+                    { num: "9년+", label: "경력" },
                     { num: "100%", label: "만족도" },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center bg-white p-6 rounded-2xl shadow-soft">
@@ -156,14 +183,14 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "본식 메이크업", emoji: "💒" },
-              { title: "스드메 패키지", emoji: "📸" },
-              { title: "리허설 메이크업", emoji: "✨" },
+              { title: "웨딩 메이크업", emoji: "💍" },
+              { title: "혼주 메이크업", emoji: "🌸" },
               { title: "하객 메이크업", emoji: "👗" },
-              { title: "데일리 메이크업", emoji: "☀️" },
-              { title: "승무원 메이크업", emoji: "✈️" },
-              { title: "면접 메이크업", emoji: "💼" },
+              { title: "데일리 메이크업", emoji: "🎀" },
+              { title: "프로필 촬영 메이크업", emoji: "🎬" },
               { title: "돌잔치 메이크업", emoji: "🎂" },
+              { title: "면접 메이크업", emoji: "💼" },
+              { title: "승무원 메이크업", emoji: "✈️" },
               { title: "메이크업 레슨", emoji: "📚" },
             ].map((service, i) => (
               <motion.div
@@ -227,7 +254,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="px-14 py-7 bg-gray-800 text-white text-2xl font-bold shadow-strong hover:shadow-xl hover:-translate-y-1 transition-all"
               >
-                💬 카카오톡 상담
+                💛 카카오톡 상담
               </a>
               <a
                 href="tel:02-2138-0605"
@@ -239,7 +266,16 @@ export default function Home() {
 
             {/* Info */}
             <div className="space-y-4 text-lg text-gray-700">
-              <p className="text-3xl font-bold text-gray-800">애브뉴준오 · 규연 실장</p>
+              <div className="flex items-center justify-center gap-3 text-3xl font-bold text-gray-800">
+                <Image
+                  src="/avenue_juno_logo.png"
+                  alt="애브뉴준오"
+                  width={200}
+                  height={60}
+                  className="h-8 md:h-10 w-auto"
+                />
+                <span>· 규연 실장</span>
+              </div>
               <p>📍 서울 강남구 청담동 63-14</p>
               <p>📞 02-2138-0605</p>
               <p className="text-base text-gray-600">
