@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   // Fixed color values
@@ -249,7 +249,7 @@ export default function Home() {
             <div className="text-center mb-12">
               <h2 className="text-5xl font-bold text-gray-800 mb-4">연락처</h2>
               <p className="text-xl text-gray-700">
-                궁금한 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
+                궁금하신 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
               </p>
             </div>
 
@@ -293,7 +293,7 @@ export default function Home() {
                   </a>
 
                   <div className="pt-4 space-y-2 text-base text-gray-600">
-                    <p>(전화 예약 시 "규연 실장" 이름으로 예약 가능)</p>
+                    <p>(전화 예약 시 &ldquo;규연 실장&rdquo; 이름으로 예약 가능)</p>
                     <p>영업시간: 10:00 ~ 18:00</p>
                   </div>
                 </div>
