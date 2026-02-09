@@ -1,105 +1,30 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  // Stagger animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
-    },
-  };
-
   return (
-    <main className="min-h-screen bg-cream">
-      {/* Animated Background Gradient */}
-      <motion.div
-        className="fixed inset-0 pointer-events-none opacity-20 z-0"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, var(--gold-light) 0%, transparent 50%)`,
-        }}
-      />
-
-      {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
-      >
-        {/* Background Profile Image Effect */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.2 }}
-          animate={{ opacity: 0.03, scale: 1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0 z-0"
-        >
-          <Image
-            src="/profile_img.png"
-            alt="Background"
-            fill
-            className="object-cover blur-3xl"
-            priority
-          />
-        </motion.div>
-
-        <motion.div style={{ opacity, scale }} className="relative z-10">
+    <main className="min-h-screen">
+      {/* Hero Section - Bright & Welcoming */}
+      <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-br from-butter-light via-white to-cream">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            className="text-center px-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
           >
-            {/* Profile Image Circle */}
+            {/* Profile Image - Large & Friendly */}
             <motion.div
-              variants={itemVariants}
-              className="mb-8 flex justify-center"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-center mb-8"
             >
-              <motion.div
-                className="relative w-32 h-32 md:w-40 md:h-40"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div
-                  className="absolute inset-0 gradient-gold rounded-full p-[3px]"
-                  animate={{
-                    rotate: 360,
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  <div className="relative w-full h-full bg-cream rounded-full overflow-hidden">
+              <div className="relative w-48 h-48 md:w-64 md:h-64">
+                <div className="absolute inset-0 gradient-butter rounded-full p-2 shadow-2xl">
+                  <div className="relative w-full h-full bg-white rounded-full overflow-hidden">
                     <Image
                       src="/profile_img.png"
                       alt="규연 실장"
@@ -108,452 +33,292 @@ export default function Home() {
                       priority
                     />
                   </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            {/* Small Title */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="text-sm tracking-[0.3em] uppercase text-gray-400">
-                Cheongdam Makeup Artist
-              </span>
+                </div>
+              </div>
             </motion.div>
 
             {/* Main Title */}
-            <motion.h1
-              variants={itemVariants}
-              className="text-6xl md:text-8xl lg:text-9xl font-bold mb-4"
-            >
-              <span className="block text-gradient-gold">GYUYEON</span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              variants={itemVariants}
-              className="text-2xl md:text-3xl lg:text-4xl font-light tracking-wide mb-3"
-            >
-              규연 실장
-            </motion.p>
-
-            {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12"
-            >
-              애브뉴준오 · 당신의 가장 아름다운 순간을 완성합니다
-            </motion.p>
-
-            {/* CTA Buttons */}
             <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="space-y-4"
+            >
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+                안녕하세요 👋
+              </h1>
+              <p className="text-3xl md:text-4xl font-semibold text-gradient-butter">
+                규연 실장입니다
+              </p>
+              <p className="text-xl md:text-2xl text-text-soft mt-6 leading-relaxed">
+                청담 <span className="font-bold text-accent">애브뉴준오</span>에서<br />
+                당신의 아름다운 순간을 함께합니다 ✨
+              </p>
+            </motion.div>
+
+            {/* CTA Buttons - Friendly & Large */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center pt-8"
             >
               <motion.a
                 href="#services"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-butter-dark to-lemon text-foreground overflow-hidden shadow-lg"
+                className="px-10 py-5 bg-gradient-to-r from-butter-deep to-accent text-white text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-lemon to-accent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="relative z-10 tracking-wider font-semibold">서비스 보기</span>
+                💄 서비스 보기
               </motion.a>
 
               <motion.a
                 href="https://open.kakao.com/o/sY6ppoqe"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-butter-dark hover:bg-butter hover:border-accent transition-all tracking-wider shadow-md"
+                className="px-10 py-5 bg-white border-3 border-butter text-foreground text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl hover:bg-butter-light transition-all"
               >
-                💬 상담 문의하기
+                💬 상담하기
               </motion.a>
             </motion.div>
           </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-accent rounded-full flex justify-center">
-            <motion.div
-              className="w-1.5 h-1.5 bg-accent rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </div>
-        </motion.div>
-
-        {/* Decorative Elements */}
-        <motion.div
-          className="absolute top-1/4 left-10 w-1 h-32 bg-gradient-to-b from-lemon to-accent opacity-40"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-10 w-1 h-32 bg-gradient-to-b from-accent to-butter-dark opacity-40"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-        />
+        </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center justify-center px-4 py-20 relative">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      {/* About Section - Card Style */}
+      <section id="about" className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative"
+            className="bg-gradient-to-br from-butter-light to-white p-10 md:p-16 rounded-3xl shadow-2xl"
           >
-            {/* Main Image Container with Modern Frame */}
-            <div className="relative aspect-square overflow-hidden">
-              {/* Gradient Border Effect */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Image */}
               <motion.div
-                className="absolute inset-0 gradient-gold p-[3px] rounded-lg"
-                initial={{ opacity: 0, rotate: -5 }}
-                whileInView={{ opacity: 1, rotate: 0 }}
-                transition={{ duration: 1 }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
+                className="relative"
               >
-                <div className="relative w-full h-full bg-cream rounded-lg overflow-hidden">
+                <div className="aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-butter">
                   <Image
                     src="/profile_img.png"
                     alt="규연 실장 프로필"
                     fill
                     className="object-cover"
-                    priority
                     sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  {/* Subtle Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    viewport={{ once: true }}
                   />
                 </div>
               </motion.div>
 
-              {/* Animated Light Effect */}
+              {/* Content */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ x: "-100%", opacity: 0 }}
-                whileInView={{ x: "200%", opacity: 1 }}
-                transition={{ duration: 1.5, delay: 0.5 }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
-              />
+                className="space-y-6"
+              >
+                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                  소개
+                </h2>
+                <div className="space-y-4 text-lg text-text-soft leading-relaxed">
+                  <p>
+                    🌟 청담 애브뉴준오에서 신부님들의 가장 아름다운 순간을 함께합니다.
+                  </p>
+                  <p>
+                    💕 웨딩 메이크업 전문으로 각 신부님의 개성과 아름다움을 최대한 살리는 메이크업을 추구합니다.
+                  </p>
+                  <p>
+                    ✨ 자연스러우면서도 품격있는 메이크업으로 특별한 날을 더욱 완벽하게 만들어드립니다.
+                  </p>
+                </div>
+
+                {/* Stats - Friendly Style */}
+                <div className="grid grid-cols-3 gap-4 pt-6">
+                  {[
+                    { num: "500+", label: "신부님" },
+                    { num: "7년+", label: "경력" },
+                    { num: "100%", label: "만족도" },
+                  ].map((stat, i) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.6 + i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="text-center p-4 bg-white rounded-2xl shadow-md"
+                    >
+                      <div className="text-3xl font-bold text-gradient-butter">{stat.num}</div>
+                      <div className="text-sm text-text-soft mt-1">{stat.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
-
-            {/* Decorative Elements */}
-            <motion.div
-              className="absolute -bottom-6 -right-6 w-40 h-40 gradient-gold opacity-20 rounded-lg blur-2xl"
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 0.2, scale: 1 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              viewport={{ once: true }}
-            />
-            <motion.div
-              className="absolute -top-6 -left-6 w-32 h-32 border-2 border-butter-dark rounded-lg -z-10"
-              initial={{ opacity: 0, scale: 0, rotate: -45 }}
-              whileInView={{ opacity: 0.3, scale: 1, rotate: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              viewport={{ once: true }}
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <motion.p
-              className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              About
-            </motion.p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              규연 실장
-            </h2>
-            <div className="w-16 h-1 gradient-gold mb-8" />
-            <div className="space-y-4 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              <p>
-                청담 애브뉴준오에서 신부님들의 가장 아름다운 순간을 함께합니다.
-              </p>
-              <p>
-                웨딩 메이크업 전문으로 각 신부님의 개성과 아름다움을
-                최대한 살리는 메이크업을 추구합니다.
-              </p>
-              <p>
-                자연스러우면서도 품격있는 메이크업으로
-                특별한 날을 더욱 완벽하게 만들어드립니다.
-              </p>
-            </div>
-
-            {/* Stats */}
-            <motion.div
-              className="grid grid-cols-3 gap-8 mt-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div>
-                <div className="text-3xl font-bold text-gradient-gold mb-1">500+</div>
-                <div className="text-sm text-gray-500">신부님</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gradient-gold mb-1">7+</div>
-                <div className="text-sm text-gray-500">경력</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gradient-gold mb-1">100%</div>
-                <div className="text-sm text-gray-500">만족도</div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="min-h-screen flex items-center justify-center px-4 py-20 bg-butter">
-        <div className="max-w-6xl mx-auto">
+      {/* Services Section - Grid Cards */}
+      <section id="services" className="py-20 px-4 bg-gradient-to-b from-white to-butter-light">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <motion.p
-              className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              Services
-            </motion.p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">서비스 안내</h2>
-            <div className="w-16 h-1 gradient-gold mx-auto" />
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              서비스 안내 💄
+            </h2>
+            <p className="text-xl text-text-soft">
+              다양한 메이크업 서비스를 제공합니다
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                title: "본식 메이크업",
-                description: "자연스럽고 품격있는 본식 메이크업",
-              },
-              {
-                title: "스드메 패키지",
-                description: "스튜디오 촬영 전문 메이크업",
-              },
-              {
-                title: "리허설 메이크업",
-                description: "본식 전 리허설 메이크업",
-              },
-              {
-                title: "하객 메이크업",
-                description: "결혼식 하객을 위한 메이크업",
-              },
-              {
-                title: "데일리 메이크업",
-                description: "일상을 빛내는 자연스러운 메이크업",
-              },
-              {
-                title: "승무원 메이크업",
-                description: "승무원 면접 전문 메이크업",
-              },
-              {
-                title: "면접 메이크업",
-                description: "첫인상을 완성하는 면접 메이크업",
-              },
-              {
-                title: "돌잔치 메이크업",
-                description: "특별한 날을 위한 돌잔치 메이크업",
-              },
-              {
-                title: "메이크업 레슨",
-                description: "1:1 맞춤 메이크업 교육",
-              },
-              {
-                title: "기타 문의",
-                description: "원하시는 메이크업 상담해드립니다",
-              },
+              { title: "본식 메이크업", emoji: "💒", desc: "자연스럽고 품격있는 본식 메이크업" },
+              { title: "스드메 패키지", emoji: "📸", desc: "스튜디오 촬영 전문 메이크업" },
+              { title: "리허설 메이크업", emoji: "✨", desc: "본식 전 리허설 메이크업" },
+              { title: "하객 메이크업", emoji: "👗", desc: "결혼식 하객을 위한 메이크업" },
+              { title: "데일리 메이크업", emoji: "☀️", desc: "일상을 빛내는 자연스러운 메이크업" },
+              { title: "승무원 메이크업", emoji: "✈️", desc: "승무원 면접 전문 메이크업" },
+              { title: "면접 메이크업", emoji: "💼", desc: "첫인상을 완성하는 면접 메이크업" },
+              { title: "돌잔치 메이크업", emoji: "🎂", desc: "특별한 날을 위한 돌잔치 메이크업" },
+              { title: "메이크업 레슨", emoji: "📚", desc: "1:1 맞춤 메이크업 교육" },
             ].map((service, index) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-cream p-6 border border-butter-dark hover:border-accent relative overflow-hidden group shadow-md hover:shadow-xl transition-all"
+                whileHover={{ y: -10, scale: 1.03 }}
+                className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all border-2 border-butter-light hover:border-butter"
               >
-                <motion.div
-                  className="absolute top-0 left-0 w-full h-1 gradient-gold"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ delay: index * 0.08 + 0.3, duration: 0.6 }}
-                  viewport={{ once: true }}
-                />
-                <h3 className="text-xl font-bold mb-3 group-hover:text-gradient-gold transition-all">
+                <div className="text-5xl mb-4">{service.emoji}</div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">
                   {service.title}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {service.description}
+                <p className="text-text-soft leading-relaxed">
+                  {service.desc}
                 </p>
               </motion.div>
             ))}
           </div>
+
+          {/* Extra Service Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-8 bg-gradient-to-r from-butter to-cream p-12 rounded-3xl shadow-xl text-center"
+          >
+            <div className="text-5xl mb-4">💌</div>
+            <h3 className="text-3xl font-bold text-foreground mb-4">기타 문의</h3>
+            <p className="text-xl text-text-soft mb-6">
+              원하시는 메이크업이 있으신가요?<br />
+              편하게 상담해드립니다!
+            </p>
+            <a
+              href="https://open.kakao.com/o/sY6ppoqe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-4 bg-white text-foreground font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              💬 문의하기
+            </a>
+          </motion.div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-lemon to-butter-light">
+      {/* Contact Section - Warm & Inviting */}
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-butter-light via-cream to-butter">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <motion.p
-            className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Contact
-          </motion.p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            당신의 특별한 날을
-            <br />
-            함께하고 싶습니다
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            연락처 📞
           </h2>
-          <div className="w-16 h-1 gradient-gold mx-auto mb-12" />
+          <p className="text-xl text-text-soft mb-12">
+            궁금한 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
+          </p>
 
-          <motion.p
-            className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            아래 정리된 부분 외에 궁금한 점은
-            <br />
-            오픈카카오톡으로 편하게 문의주세요🫶🏻
-          </motion.p>
-
-          {/* Contact Methods */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            viewport={{ once: true }}
-          >
+          {/* Contact Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <motion.a
               href="https://open.kakao.com/o/sY6ppoqe"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-12 py-5 bg-accent text-foreground text-lg font-semibold tracking-wider relative overflow-hidden group shadow-xl"
+              className="px-12 py-6 bg-accent text-white text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-lemon to-butter-light opacity-0 group-hover:opacity-100"
-                whileHover={{ opacity: 1 }}
-              />
-              <span className="relative z-10">💬 카카오톡 상담하기</span>
+              💬 카카오톡 상담하기
             </motion.a>
 
             <motion.a
               href="tel:02-2138-0605"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-12 py-5 border-2 border-accent text-foreground text-lg font-semibold tracking-wider hover:bg-cream transition-all shadow-lg"
+              className="px-12 py-6 bg-white border-3 border-butter-deep text-foreground text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
             >
               📞 전화 예약하기
             </motion.a>
-          </motion.div>
+          </div>
 
-          {/* Additional Info */}
+          {/* Info Card */}
           <motion.div
-            className="text-gray-600 space-y-3 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
             viewport={{ once: true }}
+            className="bg-white p-10 rounded-3xl shadow-xl space-y-4 text-lg"
           >
-            <p className="text-lg">
-              <span className="text-gradient-gold font-semibold">애브뉴준오</span> · 규연 실장
+            <p className="text-2xl font-bold text-gradient-butter">
+              애브뉴준오 · 규연 실장
             </p>
-            <p className="text-base">📍 서울 강남구 청담동 63-14</p>
-            <p className="text-base">📞 02-2138-0605</p>
-            <p className="text-sm text-gray-600">(전화 예약 시 "규연 실장" 이름으로 예약 가능)</p>
-            <p className="text-sm text-gray-600">영업시간: 오전 10:00 ~ 오후 7:00</p>
-          </motion.div>
+            <p className="text-text-soft">📍 서울 강남구 청담동 63-14</p>
+            <p className="text-text-soft">📞 02-2138-0605</p>
+            <p className="text-sm text-soft-brown">
+              (전화 예약 시 "규연 실장" 이름으로 예약 가능)
+            </p>
+            <p className="text-sm text-soft-brown">
+              영업시간: 오전 10:00 ~ 오후 7:00
+            </p>
 
-          {/* Social Links */}
-          <motion.div
-            className="flex gap-6 justify-center items-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <motion.a
-              href="https://www.instagram.com/hyxxzz.ky/"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-12 h-12 rounded-full gradient-gold flex items-center justify-center text-white text-xl hover:shadow-lg transition-shadow"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
+            {/* Instagram */}
+            <div className="pt-6 border-t-2 border-butter-light">
+              <a
+                href="https://www.instagram.com/hyxxzz.ky/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-accent hover:text-butter-deep transition-colors"
               >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </motion.a>
-            <span className="text-gray-600 font-medium">@hyxxzz.ky</span>
+                <span className="text-3xl">📷</span>
+                <span className="text-xl font-semibold">@hyxxzz.ky</span>
+              </a>
+            </div>
           </motion.div>
 
-          <motion.div
-            className="mt-16 pt-12 border-t border-butter-dark"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm text-gray-500">
-              © 2024 GYUYEON. All rights reserved.
-            </p>
-          </motion.div>
+          {/* Footer */}
+          <div className="mt-12 pt-8 border-t-2 border-butter-warm text-sm text-soft-brown">
+            <p>© 2024 GYUYEON. All rights reserved.</p>
+          </div>
         </motion.div>
       </section>
     </main>

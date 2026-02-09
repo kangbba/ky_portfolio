@@ -3,33 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --background: #fffef8;
-  --foreground: #2d2d2d;
-  --butter: #fff8dc;
-  --lemon: #fff9c4;
-  --cream: #fffaed;
-  --butter-light: #fffef0;
-  --butter-dark: #ffe4b5;
-  --accent: #ffdb58;
-  --gray-light: #f8f8f8;
-  --gray-medium: #999999;
+  /* Butter Color Palette - Warm & Friendly */
+  --background: #fffef9;
+  --foreground: #5c4033;
+  --butter: #f5e8aa;
+  --butter-light: #f9f4e8;
+  --butter-warm: #e7bd7b;
+  --butter-deep: #dd975e;
+  --cream: #f9d6c3;
+  --peach: #daaa94;
+  --soft-brown: #967366;
+  --accent: #e5b161;
+  --text-soft: #6b5d52;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a1814;
-    --foreground: #fffef8;
-    --gray-light: #2d2920;
-    --butter: #d4c5a0;
-    --lemon: #d4c894;
-    --cream: #d4cab5;
+    --background: #2a2520;
+    --foreground: #f9f4e8;
+    --butter: #d4b86a;
+    --butter-light: #3a342f;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
 }
 
@@ -38,16 +38,20 @@ body {
     text-wrap: balance;
   }
 
-  .gradient-gold {
-    background: linear-gradient(135deg, var(--butter-dark), var(--lemon), var(--butter-light));
+  .gradient-butter {
+    background: linear-gradient(135deg, var(--butter-deep), var(--butter), var(--butter-light));
+  }
+
+  .gradient-warm {
+    background: linear-gradient(135deg, var(--butter-warm), var(--cream), var(--butter-light));
   }
 
   .gradient-soft {
-    background: linear-gradient(135deg, var(--cream), var(--butter), var(--lemon));
+    background: linear-gradient(to bottom, var(--butter-light), var(--cream));
   }
 
-  .text-gradient-gold {
-    background: linear-gradient(135deg, var(--butter-dark), var(--accent), var(--lemon));
+  .text-gradient-butter {
+    background: linear-gradient(135deg, var(--butter-deep), var(--accent), var(--butter-warm));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -57,12 +61,18 @@ body {
     background-color: var(--butter);
   }
 
+  .bg-butter-light {
+    background-color: var(--butter-light);
+  }
+
   .bg-cream {
     background-color: var(--cream);
   }
 
-  .bg-lemon {
-    background-color: var(--lemon);
+  .card-butter {
+    background: linear-gradient(to bottom right, var(--butter-light), #ffffff);
+    border: 2px solid var(--butter);
+    border-radius: 20px;
   }
 }
 
@@ -71,18 +81,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar - Luxury style */
+/* Custom scrollbar - Friendly style */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--butter-light);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--butter-dark), var(--lemon));
-  border-radius: 5px;
+  background: linear-gradient(180deg, var(--butter-warm), var(--butter));
+  border-radius: 10px;
+  border: 2px solid var(--butter-light);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -91,14 +103,16 @@ html {
 
 /* Selection color */
 ::selection {
-  background: var(--lemon);
+  background: var(--butter);
   color: var(--foreground);
 }
 
-/* Cursor styles */
-@media (hover: hover) {
-  .cursor-luxury {
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+/* Smooth animations */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Rounded corners everywhere for friendliness */
+button, a, input, textarea {
+  border-radius: 12px !important;
 }
