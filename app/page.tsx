@@ -71,7 +71,7 @@ export default function Home() {
                 규연 실장
               </h1>
               <div className="flex items-center justify-center gap-4 text-2xl md:text-3xl text-gray-700 font-medium">
-                <span>애브뉴준오 · 청담 메이크업 아티스트</span>
+                <span>청담 애브뉴준오 · 메이크업 아티스트</span>
               </div>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-8">
                 당신의 가장 아름다운 순간을<br className="sm:hidden" /> 함께 만들어갑니다 💖
