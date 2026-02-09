@@ -5,9 +5,15 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section - Bright & Welcoming */}
-      <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-br from-butter-light via-white to-cream">
+    <main className="min-h-screen relative">
+      {/* Background Pattern */}
+      <div className="fixed inset-0 opacity-10 z-0" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm10-15c-8.284 0-15 6.716-15 15s6.716 15 15 15 15-6.716 15-15-6.716-15-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: '60px 60px'
+      }} />
+
+      {/* Hero Section - Butter Background */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-br from-butter via-background to-butter-warm">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -15,25 +21,21 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            {/* Profile Image - Large & Friendly */}
+            {/* Profile Image - Simple & Clean */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex justify-center mb-8"
             >
-              <div className="relative w-48 h-48 md:w-64 md:h-64">
-                <div className="absolute inset-0 gradient-butter rounded-full p-2 shadow-2xl">
-                  <div className="relative w-full h-full bg-white rounded-full overflow-hidden">
-                    <Image
-                      src="/profile_img.png"
-                      alt="규연 실장"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                </div>
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                <Image
+                  src="/profile_img.png"
+                  alt="규연 실장"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
             </motion.div>
 
@@ -44,14 +46,14 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="space-y-4"
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+              <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
                 안녕하세요 👋
               </h1>
-              <p className="text-3xl md:text-4xl font-semibold text-gradient-butter">
+              <p className="text-3xl md:text-4xl font-semibold text-white drop-shadow-md">
                 규연 실장입니다
               </p>
-              <p className="text-xl md:text-2xl text-text-soft mt-6 leading-relaxed">
-                청담 <span className="font-bold text-accent">애브뉴준오</span>에서<br />
+              <p className="text-xl md:text-2xl text-white/90 mt-6 leading-relaxed drop-shadow-sm">
+                청담 <span className="font-bold text-white">애브뉴준오</span>에서<br />
                 당신의 아름다운 순간을 함께합니다 ✨
               </p>
             </motion.div>
@@ -67,7 +69,7 @@ export default function Home() {
                 href="#services"
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-butter-deep to-accent text-white text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
+                className="px-10 py-5 bg-white text-butter-deep text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
               >
                 💄 서비스 보기
               </motion.a>
@@ -78,7 +80,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white border-3 border-butter text-foreground text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl hover:bg-butter-light transition-all"
+                className="px-10 py-5 bg-butter-deep border-3 border-white text-white text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl hover:bg-soft-brown transition-all"
               >
                 💬 상담하기
               </motion.a>
@@ -88,14 +90,14 @@ export default function Home() {
       </section>
 
       {/* About Section - Card Style */}
-      <section id="about" className="py-20 px-4 bg-white">
+      <section id="about" className="relative py-20 px-4 bg-gradient-to-b from-butter-warm to-cream">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-butter-light to-white p-10 md:p-16 rounded-3xl shadow-2xl"
+            className="bg-white/95 backdrop-blur-sm p-10 md:p-16 rounded-3xl shadow-2xl"
           >
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Image */}
@@ -106,7 +108,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-butter">
+                <div className="aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-butter-warm">
                   <Image
                     src="/profile_img.png"
                     alt="규연 실장 프로필"
@@ -167,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* Services Section - Grid Cards */}
-      <section id="services" className="py-20 px-4 bg-gradient-to-b from-white to-butter-light">
+      <section id="services" className="relative py-20 px-4 bg-gradient-to-b from-cream to-butter">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -203,7 +205,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.03 }}
-                className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all border-2 border-butter-light hover:border-butter"
+                className="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all border-2 border-white hover:border-butter-deep"
               >
                 <div className="text-5xl mb-4">{service.emoji}</div>
                 <h3 className="text-2xl font-bold text-foreground mb-3">
@@ -222,7 +224,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="mt-8 bg-gradient-to-r from-butter to-cream p-12 rounded-3xl shadow-xl text-center"
+            className="mt-8 bg-white/95 backdrop-blur-sm p-12 rounded-3xl shadow-xl text-center border-2 border-butter-deep"
           >
             <div className="text-5xl mb-4">💌</div>
             <h3 className="text-3xl font-bold text-foreground mb-4">기타 문의</h3>
@@ -234,7 +236,7 @@ export default function Home() {
               href="https://open.kakao.com/o/sY6ppoqe"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-white text-foreground font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+              className="inline-block px-8 py-4 bg-butter-deep text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
             >
               💬 문의하기
             </a>
@@ -243,7 +245,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section - Warm & Inviting */}
-      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-butter-light via-cream to-butter">
+      <section id="contact" className="relative py-20 px-4 bg-gradient-to-br from-butter via-butter-warm to-butter-deep">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -251,10 +253,10 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-6">
             연락처 📞
           </h2>
-          <p className="text-xl text-text-soft mb-12">
+          <p className="text-xl text-white/90 drop-shadow-md mb-12">
             궁금한 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
           </p>
 
@@ -266,7 +268,7 @@ export default function Home() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="px-12 py-6 bg-accent text-white text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
+              className="px-12 py-6 bg-white text-butter-deep text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
             >
               💬 카카오톡 상담하기
             </motion.a>
@@ -275,7 +277,7 @@ export default function Home() {
               href="tel:02-2138-0605"
               whileHover={{ scale: 1.05, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="px-12 py-6 bg-white border-3 border-butter-deep text-foreground text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
+              className="px-12 py-6 bg-butter-deep border-3 border-white text-white text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
             >
               📞 전화 예약하기
             </motion.a>
@@ -287,7 +289,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="bg-white p-10 rounded-3xl shadow-xl space-y-4 text-lg"
+            className="bg-white/95 backdrop-blur-sm p-10 rounded-3xl shadow-xl space-y-4 text-lg"
           >
             <p className="text-2xl font-bold text-gradient-butter">
               애브뉴준오 · 규연 실장
@@ -316,7 +318,7 @@ export default function Home() {
           </motion.div>
 
           {/* Footer */}
-          <div className="mt-12 pt-8 border-t-2 border-butter-warm text-sm text-soft-brown">
+          <div className="mt-12 pt-8 border-t-2 border-white/30 text-sm text-white/80 drop-shadow-sm">
             <p>© 2024 GYUYEON. All rights reserved.</p>
           </div>
         </motion.div>

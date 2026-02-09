@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 :root {
-  /* Butter Color Palette - Warm & Friendly */
-  --background: #fffef9;
-  --foreground: #5c4033;
-  --butter: #f5e8aa;
+  /* Butter Color Palette - Inverted for Butter Background */
+  --background: #f5e8aa;
+  --background-light: #fff9e6;
+  --foreground: #ffffff;
+  --foreground-dark: #fffef9;
+  --butter: #e7bd7b;
   --butter-light: #f9f4e8;
   --butter-warm: #e7bd7b;
   --butter-deep: #dd975e;
@@ -14,7 +16,8 @@
   --peach: #daaa94;
   --soft-brown: #967366;
   --accent: #e5b161;
-  --text-soft: #6b5d52;
+  --text-soft: #f5f5f5;
+  --card-bg: rgba(255, 255, 255, 0.95);
 }
 
 @media (prefers-color-scheme: dark) {
