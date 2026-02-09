@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -35,6 +36,22 @@ const config: Config = {
           "0%": { transform: "translateX(20px)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
         },
+      },
+      // Viewport-responsive font sizes using clamp()
+      fontSize: {
+        'xs': ['clamp(0.5rem, 0.75vw, 0.75rem)', { lineHeight: '1rem' }],
+        'sm': ['clamp(0.65rem, 0.875vw, 0.875rem)', { lineHeight: '1.25rem' }],
+        'base': ['clamp(0.75rem, 1vw, 1rem)', { lineHeight: '1.5rem' }],
+        'lg': ['clamp(0.85rem, 1.125vw, 1.125rem)', { lineHeight: '1.75rem' }],
+        'xl': ['clamp(0.95rem, 1.25vw, 1.25rem)', { lineHeight: '1.75rem' }],
+        '2xl': ['clamp(1.1rem, 1.5vw, 1.5rem)', { lineHeight: '2rem' }],
+        '3xl': ['clamp(1.4rem, 1.875vw, 1.875rem)', { lineHeight: '2.25rem' }],
+        '4xl': ['clamp(1.7rem, 2.25vw, 2.25rem)', { lineHeight: '2.5rem' }],
+        '5xl': ['clamp(2rem, 3vw, 3rem)', { lineHeight: '1' }],
+        '6xl': ['clamp(2.5rem, 3.75vw, 3.75rem)', { lineHeight: '1' }],
+        '7xl': ['clamp(3rem, 4.5vw, 4.5rem)', { lineHeight: '1' }],
+        '8xl': ['clamp(4rem, 6vw, 6rem)', { lineHeight: '1' }],
+        '9xl': ['clamp(5rem, 8vw, 8rem)', { lineHeight: '1' }],
       },
     },
   },

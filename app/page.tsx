@@ -105,7 +105,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-4">
+      <section id="about" className="py-24 px-2">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40, rotateY: 15 }}
@@ -159,9 +159,9 @@ export default function Home() {
                     { num: "9년+", label: "경력" },
                     { num: "100%", label: "만족도" },
                   ].map((stat) => (
-                    <div key={stat.label} className="text-center bg-white p-3 md:p-6 rounded-xl md:rounded-2xl shadow-soft">
-                      <div className="text-2xl md:text-4xl font-extrabold text-gray-800">{stat.num}</div>
-                      <div className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">{stat.label}</div>
+                    <div key={stat.label} className="text-center bg-white p-3 md:p-6 rounded-xl md:rounded-2xl shadow-soft overflow-hidden">
+                      <div className="text-xl md:text-4xl font-extrabold text-gray-800 whitespace-nowrap">{stat.num}</div>
+                      <div className="text-[0.65rem] md:text-sm text-gray-600 mt-1 md:mt-2 whitespace-nowrap">{stat.label}</div>
                     </div>
                   ))}
                 </div>
