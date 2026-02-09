@@ -2,7 +2,68 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
+function AutoSizeText({
+  children,
+  maxFontSize = 20,
+  minFontSize = 8,
+  className = ""
+}: {
+  children: React.ReactNode;
+  maxFontSize?: number;
+  minFontSize?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const resizeText = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+
+      timeoutRef.current = setTimeout(() => {
+        const parent = element.parentElement;
+        if (!parent) return;
+
+        let currentSize = maxFontSize;
+        element.style.fontSize = `${currentSize}px`;
+
+        while (element.scrollWidth > parent.clientWidth && currentSize > minFontSize) {
+          currentSize -= 1;
+          element.style.fontSize = `${currentSize}px`;
+        }
+      }, 50);
+    };
+
+    // Initial resize
+    requestAnimationFrame(resizeText);
+
+    const observer = new ResizeObserver(resizeText);
+    if (element.parentElement) {
+      observer.observe(element.parentElement);
+    }
+
+    window.addEventListener('resize', resizeText);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      window.removeEventListener('resize', resizeText);
+      observer.disconnect();
+    };
+  }, [children, maxFontSize, minFontSize]);
+
+  return (
+    <span ref={ref} className={`whitespace-nowrap ${className}`}>
+      {children}
+    </span>
+  );
+}
 
 export default function Home() {
   // Fixed color values
@@ -105,7 +166,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-2">
+      <section id="about" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40, rotateY: 15 }}
@@ -117,7 +178,7 @@ export default function Home() {
               stiffness: 80
             }}
             style={{ perspective: 2000 }}
-            className="card-glass p-12 md:p-16 rounded-3xl shadow-strong"
+            className="card-glass p-6 md:p-16 rounded-3xl shadow-strong"
           >
             <div className="grid md:grid-cols-5 gap-12 items-center">
               {/* Image - Smaller */}
@@ -137,31 +198,35 @@ export default function Home() {
               <div className="md:col-span-3 space-y-4 md:space-y-8">
                 <h2 className="text-3xl md:text-5xl font-bold text-gray-800">소개</h2>
 
-                <div className="space-y-3 md:space-y-5 text-base md:text-xl text-gray-700 leading-relaxed">
-                  <p className="flex items-start gap-2 md:gap-3">
-                    <span className="text-xl md:text-3xl">✨</span>
-                    <span>가장 빛나는 순간을 연출합니다</span>
+                <div className="space-y-3 md:space-y-5 text-gray-700 leading-relaxed px-8">
+                  <p className="flex items-start gap-1.5 md:gap-3">
+                    <span className="text-3xl flex-shrink-0">✨</span>
+                    <AutoSizeText maxFontSize={20} minFontSize={12}>가장 빛나는 순간을 연출합니다</AutoSizeText>
                   </p>
-                  <p className="flex items-start gap-2 md:gap-3">
-                    <span className="text-xl md:text-3xl">🫧</span>
-                    <span>취향과 분위기를 디테일하게 읽어내는 1:1 상담</span>
+                  <p className="flex items-start gap-1.5 md:gap-3">
+                    <span className="text-3xl flex-shrink-0">🫧</span>
+                    <AutoSizeText maxFontSize={20} minFontSize={10}>취향과 분위기를 디테일하게 읽어내는 1:1 상담</AutoSizeText>
                   </p>
-                  <p className="flex items-start gap-2 md:gap-3">
-                    <span className="text-xl md:text-3xl">🌿</span>
-                    <span>가장 잘 어울리는 방향으로 완성하는 맞춤 메이크업</span>
+                  <p className="flex items-start gap-1.5 md:gap-3">
+                    <span className="text-3xl flex-shrink-0">🌿</span>
+                    <AutoSizeText maxFontSize={20} minFontSize={10}>가장 잘 어울리는 방향으로 완성하는 맞춤 메이크업</AutoSizeText>
                   </p>
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-3 md:gap-6 pt-6">
+                <div className="grid grid-cols-3 gap-3 md:gap-6 pt-6 px-2">
                   {[
                     { num: "1500+", label: "고객님" },
                     { num: "9년+", label: "경력" },
                     { num: "100%", label: "만족도" },
                   ].map((stat) => (
-                    <div key={stat.label} className="text-center bg-white p-3 md:p-6 rounded-xl md:rounded-2xl shadow-soft overflow-hidden">
-                      <div className="text-xl md:text-4xl font-extrabold text-gray-800 whitespace-nowrap">{stat.num}</div>
-                      <div className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2 whitespace-nowrap">{stat.label}</div>
+                    <div key={stat.label} className="text-center bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-soft overflow-hidden">
+                      <div className="font-extrabold text-gray-800">
+                        <AutoSizeText maxFontSize={36} minFontSize={16}>{stat.num}</AutoSizeText>
+                      </div>
+                      <div className="text-gray-600 mt-2 md:mt-2">
+                        <AutoSizeText maxFontSize={14} minFontSize={10}>{stat.label}</AutoSizeText>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -172,7 +237,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 px-4">
+      <section id="services" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -186,13 +251,13 @@ export default function Home() {
             <p className="text-2xl text-gray-700">다양한 메이크업 서비스를 제공합니다</p>
           </motion.div>
 
-          <div className="grid grid-cols-3 gap-3 md:gap-6">
+          <div className="grid grid-cols-3 gap-4 md:gap-6 px-8">
             {[
               { title: "웨딩 메이크업", emoji: "💍" },
               { title: "혼주 메이크업", emoji: "🌸" },
               { title: "하객 메이크업", emoji: "👗" },
               { title: "데일리 메이크업", emoji: "🎀" },
-              { title: "프로필 촬영 메이크업", emoji: "🎬", mobileBr: true },
+              { title: "프로필 촬영 메이크업", emoji: "🎬" },
               { title: "돌잔치 메이크업", emoji: "🎂" },
               { title: "면접 메이크업", emoji: "💼" },
               { title: "승무원 메이크업", emoji: "✈️" },
@@ -200,19 +265,24 @@ export default function Home() {
             ].map((service, i) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-                viewport={{ once: true }}
-                className="card-glass p-4 md:p-8 rounded-xl md:rounded-2xl shadow-soft hover:shadow-strong hover:-translate-y-2 transition-all cursor-pointer"
+                transition={{
+                  delay: i * 0.03,
+                  duration: 0.3,
+                  ease: "easeOut"
+                }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="card-glass p-3 md:p-8 rounded-xl md:rounded-2xl shadow-soft hover:shadow-strong hover:-translate-y-2 transition-all cursor-pointer will-change-transform"
               >
-                <div className="text-3xl md:text-6xl mb-2 md:mb-4">{service.emoji}</div>
-                <h3 className="text-sm md:text-2xl font-bold text-gray-800">
-                  {service.mobileBr ? (
-                    <>프로필 촬영<br className="sm:hidden" /> 메이크업</>
-                  ) : (
-                    service.title
-                  )}
+                <div className="text-3xl md:text-6xl mb-1 md:mb-4">{service.emoji}</div>
+                <h3 className="font-bold text-gray-800 leading-tight">
+                  <span className="md:hidden">
+                    <AutoSizeText maxFontSize={14} minFontSize={8}>{service.title}</AutoSizeText>
+                  </span>
+                  <span className="hidden md:inline">
+                    <AutoSizeText maxFontSize={24} minFontSize={8}>{service.title}</AutoSizeText>
+                  </span>
                 </h3>
               </motion.div>
             ))}
@@ -225,16 +295,18 @@ export default function Home() {
               viewport={{ once: true }}
               className="col-span-3 card-glass p-6 md:p-12 rounded-xl md:rounded-2xl shadow-strong text-center"
             >
-              <div className="text-4xl md:text-6xl mb-2 md:mb-4">💌</div>
-              <h3 className="text-xl md:text-3xl font-bold text-gray-800 mb-2 md:mb-4">기타 문의</h3>
-              <p className="text-base md:text-xl text-gray-700 mb-4 md:mb-8">
+              <div className="text-4xl md:text-6xl mb-4 md:mb-4">💌</div>
+              <h3 className="font-bold text-gray-800 mb-4 md:mb-4 text-[length:clamp(0.9rem,4vw,1.875rem)]">
+                기타 문의
+              </h3>
+              <p className="text-gray-700 mb-6 md:mb-8 text-[length:clamp(0.5rem,2.5vw,1.25rem)]">
                 원하시는 메이크업이 있으신가요? 편하게 상담해드립니다!
               </p>
               <a
                 href="https://open.kakao.com/o/sY6ppoqe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-6 md:px-10 py-3 md:py-5 bg-gray-800 text-white text-sm md:text-lg font-bold shadow-soft hover:shadow-strong hover:-translate-y-1 transition-all"
+                className="inline-block px-6 md:px-10 py-3 md:py-5 bg-gray-800 text-white font-bold shadow-soft hover:shadow-strong hover:-translate-y-1 transition-all text-[length:clamp(0.75rem,2.5vw,1.125rem)]"
               >
                 💬 문의하기
               </a>
@@ -244,18 +316,18 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4">
+      <section id="contact" className="py-24 px-2">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="card-glass p-12 md:p-16 rounded-3xl shadow-strong"
+            className="card-glass p-6 md:p-12 rounded-3xl shadow-strong"
           >
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 px-8 pt-4">
               <h2 className="text-5xl font-bold text-gray-800 mb-4">연락처</h2>
-              <p className="text-xl text-gray-700 whitespace-nowrap">
-                궁금하신 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻
+              <p className="text-gray-700">
+                <AutoSizeText maxFontSize={20} minFontSize={14}>궁금하신 점은 오픈카카오톡으로 편하게 문의주세요 🫶🏻</AutoSizeText>
               </p>
             </div>
 
@@ -278,29 +350,29 @@ export default function Home() {
             </div>
 
             {/* Company Info Card */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-soft mb-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-soft mb-8">
               <div className="flex flex-col items-center gap-4 md:gap-6">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">
-                  <span>애브뉴준오 · 규연 실장</span>
+                <div className="font-bold text-gray-800 text-center">
+                  <AutoSizeText maxFontSize={30} minFontSize={18}>애브뉴준오 · 규연 실장</AutoSizeText>
                 </div>
 
-                <div className="w-full space-y-4 text-center">
-                  <div className="flex flex-row items-center justify-center gap-2 text-sm md:text-base text-gray-700">
-                    <span>📍</span>
-                    <span className="whitespace-nowrap">서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
+                <div className="w-full space-y-4 text-center px-4">
+                  <div className="flex flex-row items-center justify-center gap-2 text-gray-700">
+                    <span className="text-base">📍</span>
+                    <AutoSizeText maxFontSize={16} minFontSize={12}>서울 강남구 삼성로 728 준오헤어 청담동 사옥</AutoSizeText>
                   </div>
 
                   <a
                     href="tel:02-2138-0605"
-                    className="flex items-center justify-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors"
+                    className="flex items-center justify-center gap-2 sm:gap-3 font-bold text-gray-800 hover:text-gray-600 transition-colors"
                   >
-                    <span>📞</span>
-                    <span className="whitespace-nowrap">02-2138-0605</span>
+                    <span className="text-2xl">📞</span>
+                    <AutoSizeText maxFontSize={24} minFontSize={16}>02-2138-0605</AutoSizeText>
                   </a>
 
-                  <div className="pt-4 space-y-2 text-sm sm:text-base text-gray-600">
-                    <p className="whitespace-nowrap">(전화 예약 시 &ldquo;규연 실장&rdquo; 이름으로 예약 가능)</p>
-                    <p className="whitespace-nowrap">영업시간: 10:00 ~ 18:00</p>
+                  <div className="pt-4 space-y-2 text-gray-600">
+                    <p><AutoSizeText maxFontSize={16} minFontSize={12}>(전화 예약 시 &ldquo;규연 실장&rdquo; 이름으로 예약 가능)</AutoSizeText></p>
+                    <p><AutoSizeText maxFontSize={16} minFontSize={12}>영업시간: 10:00 ~ 18:00</AutoSizeText></p>
                   </div>
                 </div>
               </div>
