@@ -153,15 +153,15 @@ export default function Home() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-6 pt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6">
                   {[
                     { num: "1500+", label: "고객님" },
                     { num: "9년+", label: "경력" },
                     { num: "100%", label: "만족도" },
                   ].map((stat) => (
-                    <div key={stat.label} className="text-center bg-white p-6 rounded-2xl shadow-soft">
-                      <div className="text-4xl font-extrabold text-gray-800">{stat.num}</div>
-                      <div className="text-sm text-gray-600 mt-2">{stat.label}</div>
+                    <div key={stat.label} className="text-center bg-white p-4 sm:p-6 rounded-2xl shadow-soft">
+                      <div className="text-3xl sm:text-4xl font-extrabold text-gray-800">{stat.num}</div>
+                      <div className="text-xs sm:text-sm text-gray-600 mt-2">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -272,27 +272,27 @@ export default function Home() {
             </div>
 
             {/* Company Info Card */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-soft mb-8">
-              <div className="flex flex-col items-center gap-6">
-                <div className="text-3xl font-bold text-gray-800">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-soft mb-8">
+              <div className="flex flex-col items-center gap-4 md:gap-6">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">
                   <span>애브뉴준오 · 규연 실장</span>
                 </div>
 
-                <div className="w-full max-w-md space-y-4 text-center">
-                  <div className="flex items-center justify-center gap-3 text-xl text-gray-700">
+                <div className="w-full max-w-md space-y-4 text-center px-4">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg md:text-xl text-gray-700">
                     <span>📍</span>
-                    <span>서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
+                    <span className="break-keep">서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
                   </div>
 
                   <a
                     href="tel:02-2138-0605"
-                    className="flex items-center justify-center gap-3 text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors"
+                    className="flex items-center justify-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors"
                   >
                     <span>📞</span>
                     <span>02-2138-0605</span>
                   </a>
 
-                  <div className="pt-4 space-y-2 text-base text-gray-600">
+                  <div className="pt-4 space-y-2 text-sm sm:text-base text-gray-600">
                     <p>(전화 예약 시 &ldquo;규연 실장&rdquo; 이름으로 예약 가능)</p>
                     <p>영업시간: 10:00 ~ 18:00</p>
                   </div>
@@ -306,14 +306,14 @@ export default function Home() {
                 href="https://www.instagram.com/hyxxzz.ky/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-4 text-gray-800 hover:text-gray-600 text-2xl font-bold transition-all group"
+                className="inline-flex items-center gap-3 sm:gap-4 text-gray-800 hover:text-gray-600 text-lg sm:text-xl md:text-2xl font-bold transition-all group"
               >
                 <Image
                   src="/logos/instagram_logo.png"
                   alt="Instagram"
                   width={44}
                   height={44}
-                  className="w-11 h-11 group-hover:scale-110 transition-transform"
+                  className="w-9 h-9 sm:w-11 sm:h-11 group-hover:scale-110 transition-transform"
                 />
                 <span>@hyxxzz.ky</span>
               </a>
