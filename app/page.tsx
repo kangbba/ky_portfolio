@@ -134,34 +134,34 @@ export default function Home() {
               </div>
 
               {/* Content - Larger */}
-              <div className="md:col-span-3 space-y-8">
-                <h2 className="text-5xl font-bold text-gray-800">소개</h2>
+              <div className="md:col-span-3 space-y-4 md:space-y-8">
+                <h2 className="text-3xl md:text-5xl font-bold text-gray-800">소개</h2>
 
-                <div className="space-y-5 text-lg text-gray-700 leading-relaxed">
-                  <p className="flex items-start gap-3">
-                    <span className="text-2xl">✨</span>
+                <div className="space-y-3 md:space-y-5 text-sm md:text-lg text-gray-700 leading-relaxed">
+                  <p className="flex items-start gap-2 md:gap-3">
+                    <span className="text-lg md:text-2xl">✨</span>
                     <span>가장 빛나는 순간을 연출합니다</span>
                   </p>
-                  <p className="flex items-start gap-3">
-                    <span className="text-2xl">🫧</span>
+                  <p className="flex items-start gap-2 md:gap-3">
+                    <span className="text-lg md:text-2xl">🫧</span>
                     <span>취향과 분위기를 디테일하게 읽어내는 1:1 상담</span>
                   </p>
-                  <p className="flex items-start gap-3">
-                    <span className="text-2xl">🌿</span>
+                  <p className="flex items-start gap-2 md:gap-3">
+                    <span className="text-lg md:text-2xl">🌿</span>
                     <span>가장 잘 어울리는 방향으로 완성하는 맞춤 메이크업</span>
                   </p>
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6">
+                <div className="grid grid-cols-3 gap-3 md:gap-6 pt-6">
                   {[
                     { num: "1500+", label: "고객님" },
                     { num: "9년+", label: "경력" },
                     { num: "100%", label: "만족도" },
                   ].map((stat) => (
-                    <div key={stat.label} className="text-center bg-white p-4 sm:p-6 rounded-2xl shadow-soft">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-gray-800">{stat.num}</div>
-                      <div className="text-xs sm:text-sm text-gray-600 mt-2">{stat.label}</div>
+                    <div key={stat.label} className="text-center bg-white p-3 md:p-6 rounded-xl md:rounded-2xl shadow-soft">
+                      <div className="text-2xl md:text-4xl font-extrabold text-gray-800">{stat.num}</div>
+                      <div className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -186,7 +186,7 @@ export default function Home() {
             <p className="text-2xl text-gray-700">다양한 메이크업 서비스를 제공합니다</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3 md:gap-6">
             {[
               { title: "웨딩 메이크업", emoji: "💍" },
               { title: "혼주 메이크업", emoji: "🌸" },
@@ -204,10 +204,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 viewport={{ once: true }}
-                className="card-glass p-8 rounded-2xl shadow-soft hover:shadow-strong hover:-translate-y-2 transition-all cursor-pointer"
+                className="card-glass p-4 md:p-8 rounded-xl md:rounded-2xl shadow-soft hover:shadow-strong hover:-translate-y-2 transition-all cursor-pointer"
               >
-                <div className="text-6xl mb-4">{service.emoji}</div>
-                <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
+                <div className="text-3xl md:text-6xl mb-2 md:mb-4">{service.emoji}</div>
+                <h3 className="text-sm md:text-2xl font-bold text-gray-800">{service.title}</h3>
               </motion.div>
             ))}
 
@@ -217,18 +217,18 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
               viewport={{ once: true }}
-              className="md:col-span-2 lg:col-span-3 card-glass p-12 rounded-2xl shadow-strong text-center"
+              className="col-span-3 card-glass p-6 md:p-12 rounded-xl md:rounded-2xl shadow-strong text-center"
             >
-              <div className="text-6xl mb-4">💌</div>
-              <h3 className="text-3xl font-bold text-gray-800 mb-4">기타 문의</h3>
-              <p className="text-xl text-gray-700 mb-8">
+              <div className="text-4xl md:text-6xl mb-2 md:mb-4">💌</div>
+              <h3 className="text-xl md:text-3xl font-bold text-gray-800 mb-2 md:mb-4">기타 문의</h3>
+              <p className="text-base md:text-xl text-gray-700 mb-4 md:mb-8">
                 원하시는 메이크업이 있으신가요? 편하게 상담해드립니다!
               </p>
               <a
                 href="https://open.kakao.com/o/sY6ppoqe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-10 py-5 bg-gray-800 text-white text-lg font-bold shadow-soft hover:shadow-strong hover:-translate-y-1 transition-all"
+                className="inline-block px-6 md:px-10 py-3 md:py-5 bg-gray-800 text-white text-sm md:text-lg font-bold shadow-soft hover:shadow-strong hover:-translate-y-1 transition-all"
               >
                 💬 문의하기
               </a>
@@ -279,7 +279,7 @@ export default function Home() {
                 </div>
 
                 <div className="w-full max-w-md space-y-4 text-center px-4">
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg md:text-xl text-gray-700">
+                  <div className="flex flex-row items-center justify-center gap-2 text-sm md:text-base text-gray-700">
                     <span>📍</span>
                     <span className="break-keep">서울 강남구 삼성로 728 준오헤어 청담동 사옥</span>
                   </div>
